@@ -103,8 +103,8 @@ button:hover {
 }
 
 .info-row img {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
 }
 
 .icon {
@@ -118,3 +118,13 @@ button:hover {
   font-size: 12px;
   color: #aaa;
 }
+/* .myFontAwesome-icons{
+color:red;
+height:2rem;
+} */
+ .sunrise h2{
+  color: orange;
+ }
+ .custom-icon{
+  font-size: 40px;
+ }
