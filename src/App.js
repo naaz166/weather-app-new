@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 
-// Import FontAwesome icons
+// Import FontAwesome icons and react-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTemperatureHigh, faClock} from '@fortawesome/free-solid-svg-icons';
 import { GiSunrise, GiSunset } from "react-icons/gi";
@@ -38,18 +38,19 @@ const WeatherAndTime = () => {
       setCity(name);
       setTemperature(temp)
       setFeelsLike(feels_like);
+     
 
       // Set weather icon from OpenWeather data
       const weatherIconCode = weather[0].icon;
       setWeatherIcon(`https://openweathermap.org/img/wn/${weatherIconCode}@2x.png`);
 
 
-         // Convert sunrise and sunset timestamps to readable time
-         const sunriseTime = new Date(sunrise * 1000).toLocaleTimeString();
-         const sunsetTime = new Date(sunset * 1000).toLocaleTimeString();
+      // Convert sunrise and sunset timestamps to readable time
+      const sunriseTime = new Date(sunrise * 1000).toLocaleTimeString();
+      const sunsetTime = new Date(sunset * 1000).toLocaleTimeString();
    
-         setSunrise(sunriseTime);
-         setSunset(sunsetTime);
+      setSunrise(sunriseTime);
+      setSunset(sunsetTime);
 
       // Calculate the local time using timezone offset
       const timezoneOffset = weatherResponse.data.timezone; // Timezone offset in seconds
@@ -95,8 +96,7 @@ const WeatherAndTime = () => {
           {/* Display weather icon */}
           <div className="info-row">
             <img src={weatherIcon} alt="Weather Icon" className="icon" />
-            <h1>Temperature: {temperature} °C</h1>
-         
+            <h2>Temperature: {temperature} °C</h2>
             <FontAwesomeIcon icon={faTemperatureHigh} className="custom-icon"/>
           </div>
 
