@@ -28,7 +28,7 @@ const WeatherAndTime = () => {
         `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
       );
 
-      const { sys, main, name, weather } = weatherResponse.data;
+      const { sys, main, name, weather,timezone } = weatherResponse.data;
       console.log(weatherResponse.data)
       const { country,sunrise,sunset } = sys;
       const { temp } = main;
@@ -46,11 +46,11 @@ const WeatherAndTime = () => {
 
 
       // Convert sunrise and sunset timestamps to readable time
-      const sunriseTime = new Date(sunrise * 1000).toLocaleTimeString();
-      const sunsetTime = new Date(sunset * 1000).toLocaleTimeString();
+      const localSunrise = new Date((sunrise + timezone) * 1000).toLocaleTimeString();
+      const localSunset  = new Date((sunset  + timezone) * 1000).toLocaleTimeString();
    
-      setSunrise(sunriseTime);
-      setSunset(sunsetTime);
+      setSunrise(localSunrise);
+      setSunset(localSunset);
 
       // Calculate the local time using timezone offset
       const timezoneOffset = weatherResponse.data.timezone; // Timezone offset in seconds
