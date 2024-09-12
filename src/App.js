@@ -53,9 +53,8 @@ const WeatherAndTime = () => {
       setSunset(localSunset);
 
       // Calculate the local time using timezone offset
-      const timezoneOffset = weatherResponse.data.timezone; // Timezone offset in seconds
       const currentDate = new Date();
-      const localDate = new Date(currentDate.getTime() + timezoneOffset * 1000);
+      const localDate = new Date(currentDate.getTime() + timezone * 1000);
 
       setLocalTime(localDate.toLocaleTimeString());
       setError(null); // Clear any previous errors
