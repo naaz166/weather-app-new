@@ -10,7 +10,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-/* Modern heading style */
+/* heading style */
 h1 {
   font-size: 28px;
   margin-bottom: 30px;
@@ -85,13 +85,13 @@ button:hover {
   color: #007bff;
 }
 
-/* General info styling */
+/* General info styling
 .city-info p {
   font-size: 18px;
   margin: 10px 0;
   color: #555;
   font-weight: 500;
-}
+} */
 
 /* Icon and text alignment */
 .info-row {
@@ -112,17 +112,7 @@ button:hover {
   font-size: 22px;
 }
 
-/* Footer small print */
-.footer {
-  margin-top: 30px;
-  font-size: 12px;
-  color: #aaa;
-}
-/* .myFontAwesome-icons{
-color:red;
-height:2rem;
-} */
- .sunrise h2{
+.sunrise h2{
   color: brown;
  }
  .custom-icon{

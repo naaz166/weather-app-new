@@ -18,6 +18,7 @@ const WeatherAndTime = () => {
   const [sunset, setSunset] = useState("");
   const [weatherIcon, setWeatherIcon] = useState(""); // OpenWeather icon code
   const [error, setError] = useState(null);
+  
 
  
 
@@ -33,11 +34,13 @@ const WeatherAndTime = () => {
       const { country,sunrise,sunset } = sys;
       const { temp } = main;
       const { feels_like } = main;// Temperature in Celsius
+      
 
       setCountry(country);
       setCity(name);
       setTemperature(temp)
       setFeelsLike(feels_like);
+   
      
 
       // Set weather icon from OpenWeather data
@@ -90,18 +93,21 @@ const WeatherAndTime = () => {
       {!error && city && country && (
         <div className="city-info">
           <h1>City: {city}</h1>
-          <h1>Country: {country} / Feels Like {feelsLike}°C</h1>
+          <h1>
+            Country: {country} / Feels Like {feelsLike}°C
+          </h1>
           
+
           {/* Display weather icon */}
           <div className="info-row">
             <img src={weatherIcon} alt="Weather Icon" className="icon" />
-            <h2>Temperature: {temperature} °C</h2>
-            <FontAwesomeIcon icon={faTemperatureHigh} className="custom-icon"/>
+            <h1>Temperature: {temperature} °C</h1>
+            <FontAwesomeIcon icon={faTemperatureHigh} className="custom-icon" />
           </div>
 
           {/* Display time with clock icon */}
           <div className="info-row">
-            <FontAwesomeIcon icon={faClock} className="custom-icon"/>
+            <FontAwesomeIcon icon={faClock} className="custom-icon" />
             <h1>Local Time: {localTime}</h1>
           </div>
           <div className="info-row sunrise">
