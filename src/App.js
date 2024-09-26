@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-
-
-// Import FontAwesome icons and react-icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTemperatureHigh, faClock} from '@fortawesome/free-solid-svg-icons';
-import { GiSunrise, GiSunset } from "react-icons/gi";
+import SearchForm from "./SearchForm";
+import TimeDetails from "./TimeDetails";
+import WeatherDetails from "./WeatherDetails";
 
 const WeatherAndTime = () => {
   const [city, setCity] = useState(""); // City name from API
@@ -19,30 +16,23 @@ const WeatherAndTime = () => {
   const [weatherIcon, setWeatherIcon] = useState(""); // OpenWeather icon code
   const [error, setError] = useState(null);
   
-
- 
-
   const fetchWeatherAndTime = async () => {
     try {
       // Get weather data, including temperature, coordinates, and country
       const weatherResponse = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
       );
-
+      console.log(weatherResponse)
       const { sys, main, name, weather,timezone } = weatherResponse.data;
-      console.log(weatherResponse.data)
       const { country,sunrise,sunset } = sys;
       const { temp } = main;
-      const { feels_like } = main;// Temperature in Celsius
+      const { feels_like } = main;
       
-
       setCountry(country);
       setCity(name);
       setTemperature(temp)
       setFeelsLike(feels_like);
    
-     
-
       // Set weather icon from OpenWeather data
       const weatherIconCode = weather[0].icon;
       setWeatherIcon(`https://openweathermap.org/img/wn/${weatherIconCode}@2x.png`);
@@ -78,46 +68,32 @@ const WeatherAndTime = () => {
 
   return (
     <div className="container">
-      <h1>Search City for Local Time, Country, and Weather</h1>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          value={searchCity}
-          onChange={(e) => setSearchCity(e.target.value)}
-          placeholder="Enter city name"
+      <div className="city-info">
+        <h1>Search City for Local Time, Country, and Weather</h1>
+        <SearchForm
+          searchCity={searchCity}
+          setSearchCity={setSearchCity}
+          handleSearch={handleSearch}
         />
-        <button type="submit">Search</button>
-      </form>
 
-      {error && <p className="error-message">{error}</p>}
-      {!error && city && country && (
-        <div className="city-info">
-          <h1>City: {city}</h1>
-          <h1>
-            Country: {country} / Feels Like {feelsLike}°C
-          </h1>
-          
-
-          {/* Display weather icon */}
-          <div className="info-row">
-            <img src={weatherIcon} alt="Weather Icon" className="icon" />
-            <h1>Temperature: {temperature} °C</h1>
-            <FontAwesomeIcon icon={faTemperatureHigh} className="custom-icon" />
-          </div>
-
-          {/* Display time with clock icon */}
-          <div className="info-row">
-            <FontAwesomeIcon icon={faClock} className="custom-icon" />
-            <h1>Local Time: {localTime}</h1>
-          </div>
-          <div className="info-row sunrise">
-            <GiSunrise size={40} />
-            <h2>Sunrise: {sunrise}</h2>
-            <GiSunset size={40} />
-            <h2>Sunset: {sunset}</h2>
-          </div>
-        </div>
-      )}
+        {error && <p className="error-message">{error}</p>}
+        {!error && city && country && (
+          <>
+            <WeatherDetails
+              city={city}
+              country={country}
+              temperature={temperature}
+              feelsLike={feelsLike}
+              weatherIcon={weatherIcon}
+            />
+            <TimeDetails
+              localTime={localTime}
+              sunrise={sunrise}
+              sunset={sunset}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 };

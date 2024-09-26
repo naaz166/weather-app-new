@@ -68,11 +68,9 @@ button:hover {
 
 /* City info container */
 .city-info {
-  margin-top: 30px;
   padding: 25px;
   border-radius: 12px;
   background-color: #4fdcec;
-  /* background-color: #f7f7f7; */
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
@@ -84,14 +82,6 @@ button:hover {
   font-weight: bold;
   color: #007bff;
 }
-
-/* General info styling
-.city-info p {
-  font-size: 18px;
-  margin: 10px 0;
-  color: #555;
-  font-weight: 500;
-} */
 
 /* Icon and text alignment */
 .info-row {
